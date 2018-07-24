@@ -1,0 +1,66 @@
+<div class="body">
+  <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+    <h3 class="uk-card-title">الدخول</h3>
+
+    <form class="uk-form-stacked" name="form" #fo="ngForm" (ngSubmit)="onSubmit(fo)" novalidate>
+
+
+      <fieldset class="uk-fieldset">
+
+
+
+        <div class="uk-margin">
+          <input class="uk-input" type="text" placeholder="البريد الالكترونى" required name="email" [(ngModel)]="email" #emailText="ngModel">
+        </div>
+
+        <!-- ************ Start validation *********** -->
+
+        <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="emailText.invalid && (emailText.dirty || emailText.touched)">
+          <a class="uk-alert-close" uk-close></a>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="emailText.errors.required">
+            <p> email is required.</p>
+          </div>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="emailText.errors.minlength">
+            <p> email must be at least 4 characters long.
+            </p>
+          </div>
+
+        </div>
+        <!-- ************ End validation *********** -->
+
+
+
+        <div class="uk-margin">
+          <input class="uk-input" type="password" placeholder="كلمه السر" name="password" [(ngModel)]="password" required minlength="6"
+            #passText="ngModel">
+        </div>
+        <!-- ************ Start validation *********** -->
+
+        <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="passText.invalid && (passText.dirty || passText.touched)">
+          <a class="uk-alert-close" uk-close></a>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="passText.errors.required">
+            <p> password is required.</p>
+          </div>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="passText.errors.minlength">
+            <p> password must be at least 4 characters long.
+            </p>
+          </div>
+
+        </div>
+        <!-- ************ End validation *********** -->
+
+
+        <div class="uk-margin">
+          <button class="uk-button uk-button-primary">االدخول</button>
+        </div>
+
+      </fieldset>
+
+
+
+    </form>
+
+
+
+  </div>
+</div>

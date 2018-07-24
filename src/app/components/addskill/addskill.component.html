@@ -1,0 +1,157 @@
+<div class="body">
+  <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+
+    <h3 class="uk-card-title">اضف مهارتك</h3>
+    <form class="uk-form-stacked" name="form" #fo="ngForm" (ngSubmit)="onSubmit(fo)" novalidate>
+      <fieldset class="uk-fieldset">
+        <div class="uk-margin">
+          <label class="uk-form-label " for="form-stacked-text">الاسم : </label>
+          <div class="uk-inline uk-width-1-10">
+
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon:  pencil"></span>
+
+            <input class="uk-input" type="text" placeholder="اسمك" required minlength="4" appForbiddenName="bob" name="name" [(ngModel)]="sskills.name"
+              #name="ngModel">
+          </div>
+        </div>
+
+        <!-- ************ Start validation *********** -->
+
+        <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="name.invalid && (name.dirty || name.touched)">
+          <a class="uk-alert-close" uk-close></a>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="name.errors.required">
+            <p> Name is required.</p>
+          </div>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="name.errors.minlength">
+            <p> Name must be at least 4 characters long.
+            </p>
+          </div>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="name.errors.forbiddenName">
+            <p> Name cannot be Bob.</p>
+          </div>
+        </div>
+        <!-- ************ End validation *********** -->
+
+
+        <div class="uk-margin ">
+          <label class="uk-form-label" for="form-stacked-text"> الهاتف : </label>
+          <div class="uk-inline uk-width-1-10">
+
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: phone"></span>
+
+            <input class="uk-input" type="text" required minlength="11" #phone="ngModel" placeholder="رقم الهاتف" name="phone" [(ngModel)]="sskills.phone">
+          </div>
+        </div>
+        <!-- ************ Start validation *********** -->
+
+        <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+          <a class="uk-alert-close" uk-close></a>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="phone.errors.required">
+            <p> Phone is required.</p>
+          </div>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="phone.errors.minlength">
+            <p> Phone must be at least 11 characters long.
+            </p>
+          </div>
+
+        </div>
+        <!-- ************ End validation *********** -->
+
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-stacked-text">المهاره :</label>
+          <div class="uk-inline uk-width-1-10">
+
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon:  plus"></span>
+
+            <input class="uk-input" type="text" placeholder="المهاره" required minlength="4" #skills="ngModel" name="skills" [(ngModel)]="sskills.skills">
+          </div>
+        </div>
+
+        <!-- ************ Start validation *********** -->
+
+        <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="skills.invalid && (skills.dirty || skills.touched)">
+          <a class="uk-alert-close" uk-close></a>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="skills.errors.required">
+            <p> skillsis required.</p>
+          </div>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="skills.errors.minlength">
+            <p> skillsmust be at least 4 characters long.
+            </p>
+          </div>
+
+        </div>
+        <!-- ************ End validation *********** -->
+
+        <!-- <div class="uk-margin">
+          <input class="uk-input" type="text" placeholder="المحافظه" >
+        </div> -->
+
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-stacked-text">الدوله : </label>
+
+          <select class="uk-select" name="state" [(ngModel)]="sskills.state" required #state="ngModel">
+            <option>المحافظه</option>
+            <option></option>
+            <option *ngFor="let cont of countries" value="{{cont.name}}">{{cont.name}}</option>
+
+          </select>
+        </div>
+
+
+        <!-- ************ Start validation *********** -->
+
+        <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="state.invalid && (state.dirty || state.touched)">
+          <a class="uk-alert-close" uk-close></a>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="state.errors.required">
+            <p> state is required.</p>
+          </div>
+
+
+        </div>
+        <!-- ************ End validation *********** -->
+
+
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-stacked-text">السعر : </label>
+          <div class="uk-inline uk-width-1-10">
+
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon:  copy"></span>
+
+            <input class="uk-input" type="text" placeholder="السعر" name="price" required #price="ngModel" [(ngModel)]="sskills.price">
+          </div>
+        </div>
+
+        <!-- ************ Start validation *********** -->
+
+        <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="price.invalid && (price.dirty || price.touched)">
+          <a class="uk-alert-close" uk-close></a>
+          <div class=" uk-animation-shake uk-animation-reverse" *ngIf="price.errors.required">
+            <p> price is required.</p>
+          </div>
+
+
+        </div>
+        <!-- ************ End validation *********** -->
+
+
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-stacked-text">ملاحظات : </label>
+
+          <textarea class="uk-textarea" rows="5" placeholder="ملاحظات" name="notes" [(ngModel)]="sskills.notes"></textarea>
+        </div>
+
+
+
+        <div class="uk-margin">
+
+          <button class="uk-button uk-button-primary">اضف مهاره</button>
+
+        </div>
+
+      </fieldset>
+
+    </form>
+
+
+  </div>
+</div>

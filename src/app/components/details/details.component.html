@@ -1,0 +1,26 @@
+<div class="body uk-card uk-card-default uk-card-hover uk-card-body ">
+  <div class="uk-card-header">
+    <div class="uk-grid-small uk-flex-middle" uk-grid>
+      <div class="uk-width-auto">
+        <img class="uk-border-circle" width="80" height="80" src="assets/img/myskill1.jpg">
+      </div>
+      <div class="uk-width-expand">
+        <h3 class="uk-card-title uk-margin-remove-bottom">Email : {{skillOne.email}}</h3>
+        <p class=" uk-margin-remove-top">Name : {{skillOne.name}}</p>
+
+        <p class="uk-text-meta uk-margin-remove-top">
+          <time datetime="2016-04-01T19:00">April 01, 2016</time>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="uk-card-body" *ngIf="skillOne.notes">
+    <p>{{skillOne.notes}}</p>
+  </div>
+  <div class="uk-card-footer">
+    <p>Phone : {{skillOne.phone}}</p>
+    <p>State : {{skillOne.state}}</p>
+    <p>Price : {{skillOne.price}}</p>
+
+  </div>
+</div>

@@ -1,0 +1,207 @@
+<div class="body uk-card uk-card-default uk-card-hover">
+  <div class="uk-card-header">
+    <div class="uk-grid-small uk-flex-middle" uk-grid>
+      <div class="uk-width-auto">
+        <img class="uk-border-circle" width="200" height="200" src="{{uuser.image}}">
+        <br>
+        <br>
+        <input type="file" (change)="upload($event)" accept=".png , .jpg">
+      </div>
+      <div class="uk-width-expand">
+        <h3 class="uk-card-title uk-margin-remove-bottom">Email : {{email}}</h3>
+        <p class="uk-text-meta uk-margin-remove-top">
+          <time datetime="2016-04-01T19:00">April 01, 2016</time>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="uk-card-body">
+    <p>الاسم : {{uuser.name}}</p>
+    <p>الهاتف : {{uuser.phone}}</p>
+    <p>الوظيفه : {{uuser.job}}</p>
+    <p>العنوان : {{uuser.address}}</p>
+    <p>المدينه : {{uuser.city}}</p>
+    <p>العمر : {{uuser.age}}</p>
+
+  </div>
+  <div class="uk-card-footer">
+    <a href="#" class="uk-button uk-button-text" uk-toggle="target: #modal-example">تعديل</a>
+
+
+    <!-- This is the modal -->
+    <div id="modal-example" class="bodyModel" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">تعديل المعلومات</h2>
+
+
+        <form class="uk-form-stacked" name="form" #fo="ngForm" (ngSubmit)="onSubmit(fo)" novalidate>
+          <!-- <input type="hidden" name="key" [(ngModel)]="uuser.$key"> -->
+          <fieldset class="uk-fieldset">
+            <div class="uk-margin">
+              <label class="uk-form-label " for="form-stacked-text">الاسم : </label>
+              <div class="uk-inline uk-width-1-10">
+
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon:  pencil"></span>
+
+                <input class="uk-input" type="text" placeholder="اسمك" required minlength="4" appForbiddenName="bob" name="name" [(ngModel)]="uuser.name"
+                  #name="ngModel">
+              </div>
+            </div>
+
+            <!-- ************ Start validation *********** -->
+
+            <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="name.invalid && (name.dirty || name.touched)">
+              <a class="uk-alert-close" uk-close></a>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="name.errors.required">
+                <p> Name is required.</p>
+              </div>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="name.errors.minlength">
+                <p> Name must be at least 4 characters long.
+                </p>
+              </div>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="name.errors.forbiddenName">
+                <p> Name cannot be Bob.</p>
+              </div>
+            </div>
+            <!-- ************ End validation *********** -->
+
+
+            <div class="uk-margin ">
+              <label class="uk-form-label" for="form-stacked-text"> الهاتف : </label>
+              <div class="uk-inline uk-width-1-10">
+
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: phone"></span>
+
+                <input class="uk-input" type="text" required minlength="11" #phone="ngModel" placeholder="رقم الهاتف" name="phone" [(ngModel)]="uuser.phone">
+              </div>
+            </div>
+            <!-- ************ Start validation *********** -->
+
+            <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+              <a class="uk-alert-close" uk-close></a>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="phone.errors.required">
+                <p> Phone is required.</p>
+              </div>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="phone.errors.minlength">
+                <p> Phone must be at least 11 characters long.
+                </p>
+              </div>
+
+            </div>
+            <!-- ************ End validation *********** -->
+
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">العمر :</label>
+              <div class="uk-inline uk-width-1-10">
+
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon:  plus"></span>
+
+                <input class="uk-input" type="text" placeholder="العمر" required minlength="4" #age="ngModel" name="age" [(ngModel)]="uuser.age">
+              </div>
+            </div>
+
+            <!-- ************ Start validation *********** -->
+
+            <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="age.invalid && (age.dirty || age.touched)">
+              <a class="uk-alert-close" uk-close></a>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="age.errors.required">
+                <p> age is required.</p>
+              </div>
+
+            </div>
+            <!-- ************ End validation *********** -->
+
+            <!-- <div class="uk-margin">
+          <input class="uk-input" type="text" placeholder="المحافظه" >
+        </div> -->
+
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">العنوان : </label>
+
+              <select class="uk-select" name="address" [(ngModel)]="uuser.address" required #address="ngModel">
+                <option>المحافظه</option>
+                <option></option>
+                <option *ngFor="let cont of countries" value="{{cont.name}}">{{cont.name}}</option>
+
+              </select>
+            </div>
+
+
+            <!-- ************ Start validation *********** -->
+
+            <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="address.invalid && (address.dirty || address.touched)">
+              <a class="uk-alert-close" uk-close></a>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="address.errors.required">
+                <p> address is required.</p>
+              </div>
+
+
+            </div>
+            <!-- ************ End validation *********** -->
+
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">الوظيفه : </label>
+              <div class="uk-inline uk-width-1-10">
+
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon:  copy"></span>
+
+                <input class="uk-input" type="text" placeholder="الوظيفه" name="job" required #job="ngModel" [(ngModel)]="uuser.job">
+              </div>
+            </div>
+
+            <!-- ************ Start validation *********** -->
+
+            <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="job.invalid && (job.dirty || job.touched)">
+              <a class="uk-alert-close" uk-close></a>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="job.errors.required">
+                <p> job is required.</p>
+              </div>
+
+
+            </div>
+            <!-- ************ End validation *********** -->
+
+
+
+            <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">المدينه : </label>
+              <div class="uk-inline uk-width-1-10">
+
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon:  copy"></span>
+
+                <input class="uk-input" type="text" placeholder="المدينه" name="city" required #city="ngModel" [(ngModel)]="uuser.city">
+              </div>
+            </div>
+
+            <!-- ************ Start validation *********** -->
+
+            <div class="uk-alert-danger uk-animation-toggle" uk-alert *ngIf="city.invalid && (city.dirty || city.touched)">
+              <a class="uk-alert-close" uk-close></a>
+              <div class=" uk-animation-shake uk-animation-reverse" *ngIf="city.errors.required">
+                <p> city is required.</p>
+              </div>
+
+
+            </div>
+            <!-- ************ End validation *********** -->
+
+
+            <div class="uk-margin">
+              <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                <button class="uk-button uk-button-primary">تعديل</button>
+
+              </p>
+            </div>
+          </fieldset>
+
+
+        </form>
+
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
